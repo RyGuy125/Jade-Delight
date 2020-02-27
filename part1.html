@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quick Pick</title>
+	<style type="text/css">
+		html, body { font-size: 20px; }
+	</style>
+</head>
+<body>
+	<form method="get">
+		<label>Type in 5 Numbers</label><br />
+		<input type="text" id="nums" name="numbers"><br />
+		<label>Type in Lucky Number</label><br />
+		<input type="text" id="luck" name="luck"><br />
+		<input type="button" name="Submit" value="Submit" onclick="myFunction()">
+	</form>
+	<div id="display_unsort"></div>
+	<div id="display_sort"></div>
+	<div id="winning"></div>
+
+	<script>
+		function myFunction() {
+
+			var fvnum = document.getElementById("nums").value;
+			var lnum = document.getElementById("luck").value;
+
+			var input_nums = [];
+			var i = 0;
+
+			var input_nums =  fvnum.split(' ');
+
+			var numsu = [];
+			for(var i = 0; i < 5; i++) {
+				numsu[i] = Math.floor((Math.random()*48) + 1);
+			}
+			var LuckyNum = Math.floor((Math.random()*18) + 1);
+
+			for (var i = 0; i < numsu.length; i++) {
+				document.getElementById("display_unsort").innerHTML = numsu.toString() + " ";
+			}	
+			
+			numsu.sort(function(a, b){return a-b});
+			for (var i = 0; i < numsu.length; i++) {
+				document.getElementById("display_sort").innerHTML = numsu.toString() + " ";
+			}	
+
+			var num_same = 0;
+			var is_lucky = 0;
+			for (var i = 0; i < 5; i++) {
+				for (var j = 0; j < 5; j++) {
+					if (input_nums[i] == numsu[j]) {
+						num_same++;
+					}
+				}
+			}
+
+			if (lnum == LuckyNum) {
+				is_lucky = 1;
+			}
+			// document.getElementById("winning").innerHTML = num_same;
+			switch (num_same) {
+				case 0:
+					if (is_lucky == 1) {
+						document.getElementById("winning").innerHTML = "You Win $4!";
+						break;
+					}
+					document.getElementById("winning").innerHTML = "You lose!";
+					break;
+				case 1:
+					if (is_lucky == 1) {
+						document.getElementById("winning").innerHTML = "You Win $6!";
+					}
+					break;
+				case 2:
+					if (is_lucky == 1) {
+						document.getElementById("winning").innerHTML = "You Win $25!";
+						break;
+					}
+					document.getElementById("winning").innerHTML = "You Win $3!";
+					break;
+				case 3:
+					if (is_lucky == 1) {
+						document.getElementById("winning").innerHTML = "You Win $150!"
+						break;
+					}
+					document.getElementById("winning").innerHTML = "You Win $20!";
+					break;
+				case 4:
+					if (is_lucky == 1) {
+						document.getElementById("winning").innerHTML = "You Win $500!";
+						break;
+					}
+					document.getElementById("winning").innerHTML = "You Win $200!";
+					break;
+				case 5:
+					if (is_lucky == 1) {
+						document.getElementById("winning").innerHTML = "You Get $7,000 a week for LIFE!";
+						break;
+					}
+					document.getElementById("winning").innerHTML = "You get $25,000 a year for LIFE!";
+					break;
+				default:
+					document.getElementById("winning").innerHTML = "You lose!";
+					break;
+			}
+		}
+	</script>
+
+</body>
+</html>

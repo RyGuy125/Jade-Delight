@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amicable Numbers</title>
+	<style type="text/css">
+		html, body { font-size: 20px; }
+	</style>
+</head>
+<body>
+	<form method="get">
+		<label>Type in One Numbers</label><br />
+		<input type="text" id="first" name="fnum"><br />
+		<label>Type in Second Number</label><br />
+		<input type="text" id="second" name="snum"><br />
+		<input type="button" name="Submit" value="Submit" onclick="isAmicable()">
+	</form>
+	<div id="input_nums"></div>
+	<div id="isIt"></div>
+	<div id="ffactors"></div>
+	<div id="sfactors"></div>
+	<div id="test"></div>
+	<script>
+		function isAmicable(){
+			var first = document.getElementById("first").value;
+			var second = document.getElementById("second").value;
+			document.getElementById("input_nums").innerHTML = first + " " + second;
+			// var factor = isFactor(first, second);
+			// document.getElementById("test").innerHTML = factor;
+			// addFactors(test);
+			// var num = 220;
+			// var factors = getFactors(num);
+			// showFactors(factors);
+
+			var ffactors = getFactors(first);
+			var sfactors = getFactors(second);
+			var fsum = addFactors(ffactors);
+			var ssum = addFactors(sfactors);
+
+			showFactors(ffactors,"ffactors");
+			showFactors(sfactors,"sfactors");
+			if (fsum == second && ssum == first) {
+				document.getElementById("isIt").innerHTML = first + " and " + second + " are amicable.";
+			}
+			else {
+				document.getElementById("isIt").innerHTML = first + " and " + second + " are not amicable.";
+			}
+		}
+		function isFactor(x, y) {
+			return ( (x % y == 0) ? true : false);
+		}
+		function showFactors(array,id) {
+			for (var i = 0; i < array.length; i++) {
+				document.getElementById(id).innerHTML = array.toString() + " ";
+			}
+		}
+		function addFactors(array) {
+			var sum = 0;
+			for (var i = 0; i < array.length; i++) {
+				sum += array[i];
+			}
+			return sum;
+		}
+		function getFactors(x) {
+			var array = [];
+			var idx = 0;
+			for (var i = 1; i < x; i++) {
+				if (isFactor(x, i) == true) {
+					array[idx] = i;
+					idx++;
+				}
+			}
+			return array;
+		}
+	</script>
+</body>
+</html>
