@@ -1,10 +1,10 @@
 # RyGuy125.github.io
-Comp20 Hw6
+Comp20 Hw7
 
-What is your opinion of JavaScript?
+If you had an extra two weeks for this project, what feature(s) would you add.
 
-Well, as with starting any new language, the first few pass-throughs are always rough. I had a particularly hard time in
-the beginning getting used to the object oriented class and class members such as document.getElementById. Eventually though
-it became easier to manage and was second nature by the end of this assignment. Overall, coding is always fun and it was great
-to start with a new language!
+Well, I certainly would add more of what is required for this assignment. However, time constraints and confusion led to its current state. Given more time, I would also try to incorporate some photos for the dishes that are available. Also, incorporating good CSS for visuals and usability would be nice.
 
+The thing I like best about Javascript is ... 
+
+While I am not used to Javascript, I enjoy how object-oriented it seems. It makes calculations, and polymorphism much easier to handle than chasing pointers and object references. 
