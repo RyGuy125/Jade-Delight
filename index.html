@@ -1,104 +1,157 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Jade Delight</title>
+	<title>Ryan Dreher Homework 9</title>
+
+	<script type="text/javascript">
+		bands = [
+			{
+			"Artist": "Queen",
+			"Genre": "Rock",
+			"Title": "We Will Rock You",
+			"Year": 1977
+			},
+			{
+			"Artist": "Grateful Dead",
+			"Genre": "Folk Rock",
+			"Title": "Ripple",
+			"Year": 1970
+			},
+			{
+			"Artist": "Bob Dylan",
+			"Genre": "Country Rock",
+			"Title": "Like a Rolling Stone",
+			"Year": 1965
+			},
+			{
+			"Artist": "The Band",
+			"Genre": "Country Rock",
+			"Title": "The Night They Drove Old Dixie Down",
+			"Year": 1969
+			},
+			{
+			"Artist": "The Velvet Underground",
+			"Genre": "Pop",
+			"Title": "Sunday Morning",
+			"Year": 1966
+			},
+			{
+			"Artist": "Eagles",
+			"Genre": "Country Rock",
+			"Title": "Take it Easy",
+			"Year": 1972
+			},
+			{
+			"Artist": "Cat Stevens",
+			"Genre": "Folk Rock",
+			"Title": "Wild World",
+			"Year": 1970
+			},
+			{
+			"Artist": "Bruce Springsteen",
+			"Genre": "Pop",
+			"Title": "Born in the USA",
+			"Year": 1984
+			},
+			{
+			"Artist": "Rolling Stone",
+			"Genre": "Rock",
+			"Title": "Start Me Up",
+			"Year": 1981
+			},
+			{
+			"Artist": "The Doobie Brothers",
+			"Genre": "Country Rock",
+			"Title": "China Grove",
+			"Year": 1973
+			},
+			{
+			"Artist": "The Allman Brothers Band",
+			"Genre": "Country Rock",
+			"Title": "Ramblin Man",
+			"Year": 1972
+			},
+			{
+			"Artist": "Donovan",
+			"Genre": "Pop",
+			"Title": "Mellow Yellow",
+			"Year": 1966
+			}
+		];
+	</script>
+
+	<script language="javascript">
+		function printData() {	
+			for (var i = 0; i < bands.length; i++) {
+				band_data = JSON.stringify(bands[i]);
+				document.getElementById("Part Two").innerHTML += band_data + "<br />";
+			}
+		}
+	</script>
+
+	<script language="javascript">
+		function prettyPrintData() {
+			var x;
+			for (var i = 0; i < bands.length; i++) {
+				x += "<h2>" + bands[i].Title + "</h2>";
+				x += "Artist: " + bands[i].Artist + "<br />";
+				x += "Genre: " + bands[i].Genre + "<br />";
+				x += "Released " + bands[i].Year + "<br />";
+			}
+			document.getElementById("Part Three").innerHTML = x;
+		}
+	</script>
+
+	<script language="javascript">
+		function prettyPrintSelectData() {
+			var genres = document.getElementById("Genre");
+			var selectGenre = genres.options[genres.selectedIndex].text;
+			var x;
+			for (var i = 0; i < bands.length; i++) {
+				if (bands[i].Genre == selectGenre) {
+					x += "<h2>" + bands[i].Title + "</h2>";
+				}
+			}
+			document.getElementById("Filtered").innerHTML = x;
+		}
+
+		function filterPrintData() {
+			var s = "<form> <label for='Genre'> Filter by Genre: </label>";
+			s += "<select id='Genre' name='Genre'>"
+			var arr = [];
+			for (var i = 0; i < bands.length; i++) {
+				if (arr.indexOf(bands[i].Genre) == -1) {
+					arr.push(bands[i].Genre);
+				}
+			}
+			for (var j = 0; j < arr.length; j++) {
+				s += "<option value=" + arr[j] + ">" + arr[j] + "</option>";
+			}
+			s += "</select>";
+			s += "</form>";
+			s += "<button value='Filter' onclick='prettyPrintSelectData()'>Filter</button>"
+			document.getElementById("Part Four").innerHTML = s;
+		}
+	</script>
 </head>
 
 <body>
-<script language="javascript">
-
-function MenuItem(name, cost)
-{
-	this.name = name;
-	this.cost=cost;
-}
-
-menuItems = new Array(
-	new MenuItem("Chicken Chop Suey", 4.5),
-	new MenuItem("Sweet and Sour Pork", 6.25),
-	new MenuItem("Shrimp Lo Mein", 5.25),
-	new MenuItem("Moo Shi Chicken", 6.5),
-	new MenuItem("Fried Rice", 2.35)
-);
-
-function makeSelect(name, minRange, maxRange)
-{
-	var t= "";
-	t = "<select name='" + name + "' size='1'>";
-	for (j=minRange; j<=maxRange; j++)
-	   t += "<option>" + j + "</option>";
-	t+= "</select>"; 
-	return t;
-}
-
-function submit(){
-	var wait = 0;
-	if (document.getElementById("lname") -- "") {
-		alert("Please enter your last name");
-		return;
-	}
-	if (document.getElementById("delivery").checked) {
-		wait = 30*60*1000;
-		if (document.getElementById("street") == "" || document.getElementById("city") == "") {
-			alert("Please enter valid address");
-			return;
-		}
-	}
-	wait = 15*60*1000;
-	var today = new Date();
-	today.setTime(today.getTime() + wait);
-	var total = document.getElementbyId("total");
-	alert("Thank you for your order! Your order will be ready around " + today + ". Your total is " + total + ".");
-  
-}
-</script>
-
-<h1>Jade Delight</h1>
-<form>
-
-<p>First Name: <input type="text"  name='fname' /></p>
-<p>Last Name*:  <input type="text"  name='lname' /></p>
-<p>Street: <input type="text"  name='street' /></p>
-<p>City: <input type="text"  name='city' /></p>
-<p>Phone*: <input type="text"  name='phone' /></p>
-<p> 
-	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
-	<input type="radio"  name='p_or_d' value = 'delivery'/>
-	Delivery
-</p>
-<table border="0" cellpadding="3">
-  <tr>
-    <th>Select Item</th>
-    <th>Item Name</th>
-    <th>Cost Each</th>
-    <th>Total Cost</th>
-  </tr>
-<script language="javascript">
-
-  var s = "";
-  for (i=0; i< menuItems.length; i++)
-  {
-	  s += "<tr><td>";
-	  s += makeSelect("quan" + i, 0, 10);
-	  s += "</td><td>" + menuItems[i].name + "</td>";
-	  s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>";
-	  s += "<td>$<input type='text' name='cost'/></td></tr>";
-  }
-  document.writeln(s);
-</script>
-</table>
-<p>Subtotal: 
-   $<input type="text"  name='subtotal' id="subtotal" />
-</p>
-<p>Mass tax 6.25%:
-  $ <input type="text"  name='tax' id="tax" />
-</p>
-<p>Total: $ <input type="text"  name='total' id="total" />
-</p>
-
-<input type = "submit" value = "Submit Order" onclick="submit()"/>
-
-</form>
+	<div id="Part Two"> 
+		<script>
+			printData();
+		</script>
+	</div>
+	<div id="Part Three"> 
+		<script>
+			prettyPrintData();
+		</script>
+	</div>
+	<div id="Part Four">
+		<script>
+			filterPrintData();
+		</script>
+		<div id="Filtered"></div>
+	</div>
 </body>
 </html>
